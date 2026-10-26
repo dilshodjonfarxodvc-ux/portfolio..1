@@ -1,0 +1,416 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #07060b;
+  color: #fff;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.app { position: relative; min-height: 100vh; }
+button { font: inherit; background: none; border: none; cursor: pointer; color: inherit; }
+a { text-decoration: none; color: inherit; }
+
+/* ---------- Fon ---------- */
+.bg { position: fixed; inset: 0; overflow: hidden; pointer-events: none; }
+.glow { position: absolute; border-radius: 50%; filter: blur(140px); }
+.glow-amber {
+  top: -160px; left: 50%; transform: translateX(-50%);
+  width: 700px; height: 500px; background: rgba(242, 180, 65, 0.1);
+}
+.glow-lavender {
+  bottom: 0; right: 0; width: 500px; height: 400px;
+  background: rgba(124, 106, 242, 0.1);
+}
+.dots {
+  position: absolute; inset: 0; opacity: 0.3;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+.grain { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.05; }
+.fade-bottom {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 256px;
+  background: linear-gradient(to top, #07060b, transparent);
+}
+
+/* ---------- Header ---------- */
+.header { position: fixed; top: 0; left: 0; right: 0; z-index: 50; }
+.header-inner {
+  max-width: 1024px; margin: 0 auto; padding: 16px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.logo { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; }
+.nav-desktop {
+  display: flex; align-items: center; gap: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 999px; padding: 4px 8px;
+  backdrop-filter: blur(12px);
+}
+.nav-btn {
+  border-radius: 999px; padding: 6px 16px; font-size: 14px;
+  color: rgba(255, 255, 255, 0.55); transition: color 0.2s, background 0.2s;
+}
+.nav-btn:hover { color: #fff; }
+.nav-btn-active { background: rgba(255, 255, 255, 0.1); color: #fff; }
+.nav-mobile { display: none; gap: 4px; overflow-x: auto; padding: 0 16px 12px; }
+.nav-btn-sm {
+  flex-shrink: 0; border-radius: 999px; padding: 6px 14px;
+  font-size: 12px; color: rgba(255, 255, 255, 0.5);
+}
+.nav-btn-sm.nav-btn-active { background: rgba(255, 255, 255, 0.1); color: #fff; }
+
+/* ---------- Tugmalar ---------- */
+.btn-amber {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #f2b441; color: #07060b; font-weight: 600;
+  border-radius: 999px; padding: 6px 16px; font-size: 14px;
+  transition: transform 0.2s;
+}
+.btn-amber:hover { transform: translateY(-2px); }
+.btn-lg { padding: 12px 24px; }
+.link-btn {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 14px; color: rgba(255, 255, 255, 0.6); transition: color 0.2s;
+}
+.link-btn:hover { color: #fff; }
+
+/* ---------- Sahifa ---------- */
+.page { position: relative; z-index: 10; }
+.animate-page-in { animation: page-in 0.45s ease both; }
+@keyframes page-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-page-in { animation: none; }
+}
+
+.footer {
+  position: relative; z-index: 10; text-align: center;
+  padding: 24px; font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ---------- Home ---------- */
+.home {
+  max-width: 1024px; margin: 0 auto; min-height: 100vh;
+  display: flex; flex-direction: row; align-items: flex-start;
+  justify-content: space-between; flex-wrap: wrap;
+  gap: 48px; padding: 112px 24px 40px;
+}
+.home-text { flex: 1; min-width: 280px; text-align: left; }
+.badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid rgba(242, 180, 65, 0.3);
+  background: rgba(242, 180, 65, 0.1);
+  color: #f2b441; border-radius: 999px;
+  padding: 4px 12px; font-size: 12px;
+}
+.badge-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #f2b441; animation: pulse 1.5s infinite;
+}
+@keyframes pulse { 50% { opacity: 0.4; } }
+.home-title {
+  margin-top: 24px; font-size: 40px; font-weight: 700;
+  line-height: 1.15; letter-spacing: -0.02em;
+  color: white;
+}
+.home-role { margin-top: 12px; font-size: 18px; font-weight: 500; color: #f2b441; }
+.home-desc {
+  margin-top: 20px; max-width: 448px; font-size: 14px;
+  line-height: 1.7; color: rgba(255, 255, 255, 0.6);
+}
+.home-actions { margin-top: 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+.socials { margin-top: 40px; display: flex; gap: 12px; justify-content: center; }
+.home-text .socials { justify-content: flex-start; }
+.social-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.6); transition: 0.2s;
+}
+.social-btn:hover { border-color: rgba(242, 180, 65, 0.4); color: #f2b441; }
+
+.photo-wrap {
+  position: relative; flex-shrink: 0;
+  align-self: flex-start;
+  display: flex; flex-direction: column; align-items: center;
+  margin-top: 48px;     /* pastga surish */
+  margin-right: 56px;   /* chapga surish */
+}
+.photo-glow {
+  position: absolute; inset: -16px; border-radius: 24px;
+  background: rgba(242, 180, 65, 0.1); filter: blur(24px);
+}
+.photo-box {
+  position: relative; width: 256px; height: 256px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 14px; color: rgba(255, 255, 255, 0.4);
+}
+.home-details {
+  position: relative;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: center;
+  align-self: stretch;
+}
+
+.home-details strong {
+  color: #ffffff;
+}
+
+/* ---------- About qismi uchun alohida fon ---------- */
+.about-section {
+  background: #0d1526;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.about-details {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.about-details strong {
+  color: #ffffff;
+}
+
+/* ---------- Umumiy section ---------- */
+.section {
+  max-width: 768px; margin: 0 auto; min-height: 100vh; padding: 160px 24px 40px;
+}
+.section-title { font-size: 32px; font-weight: 700; letter-spacing: -0.02em; color: white; }
+.section-text { margin-top: 24px; display: grid; gap: 16px; }
+.section-text p { font-size: 14px; line-height: 1.7; color: rgba(255, 255, 255, 0.6); }
+
+/* Home ichidagi About uchun past balandlik */
+.section-compact {
+  min-height: auto;
+  padding: 64px 24px;
+}
+
+/* ---------- Stats ---------- */
+.stats { margin-top: 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.stat-card {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px; padding: 20px; text-align: center;
+}
+.stat-value { font-size: 28px; font-weight: 700; color: #f2b441; }
+.stat-label { margin-top: 4px; font-size: 12px; color: rgba(255, 255, 255, 0.5); }
+
+/* ---------- Kartalar ---------- */
+.card {
+  display: block; border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px; padding: 24px;
+}
+.card-title { font-size: 14px; font-weight: 600; color: #f2b441; }
+.skill-groups { margin-top: 40px; display: grid; gap: 24px; }
+.tags { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px; }
+.tag {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 999px; padding: 6px 14px;
+  font-size: 12px; color: rgba(255, 255, 255, 0.7);
+}
+.tag-sm { background: none; padding: 4px 12px; font-size: 11px; color: rgba(255, 255, 255, 0.6); }
+
+/* ---------- Loyihalar ---------- */
+.projects { margin-top: 40px; display: grid; gap: 16px; }
+.project-card { transition: border-color 0.2s; }
+.project-card:hover { border-color: rgba(242, 180, 65, 0.3); }
+.project-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.project-name { display: flex; align-items: center; gap: 12px; }
+.project-name h3 { font-size: 18px; font-weight: 600; }
+.featured {
+  border-radius: 999px; background: rgba(242, 180, 65, 0.15);
+  color: #f2b441; padding: 2px 10px; font-size: 10px; font-weight: 500;
+}
+.project-arrow { flex-shrink: 0; color: rgba(255, 255, 255, 0.4); transition: color 0.2s; }
+.project-card:hover .project-arrow { color: #f2b441; }
+.project-desc { margin-top: 8px; font-size: 14px; line-height: 1.6; color: rgba(255, 255, 255, 0.55); }
+
+/* ---------- Achievements ---------- */
+.achievements-sub {
+  margin-top: 16px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.achievements {
+  margin-top: 40px;
+  display: grid;
+  gap: 24px;
+}
+
+.achievement-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: center;
+  transition: border-color 0.2s;
+}
+
+.achievement-card:hover {
+  border-color: rgba(242, 180, 65, 0.3);
+}
+
+.achievement-img-link {
+  display: block;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #fff;
+}
+
+.achievement-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s;
+}
+
+.achievement-img-link:hover .achievement-img {
+  transform: scale(1.03);
+}
+
+.achievement-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.achievement-head h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.achievement-icon {
+  flex-shrink: 0;
+  color: #f2b441;
+}
+
+.achievement-body .tags {
+  align-items: center;
+}
+
+.achievement-btn {
+  margin-top: 20px;
+}
+
+/* ---------- Aloqa ---------- */
+.contact {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; text-align: center; padding-top: 112px;
+}
+.contact-sub { margin-top: 16px; font-size: 14px; color: rgba(255, 255, 255, 0.6); }
+.contact .btn-amber { margin-top: 32px; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .nav-desktop, .header-cta { display: none; }
+  .nav-mobile { display: flex; justify-content: center; }
+
+  .home {
+    flex-direction: column; align-items: center; text-align: center;
+    min-height: auto; gap: 32px;
+    padding: 110px 20px 40px;
+  }
+  .home-text { text-align: center; min-width: 0; width: 100%; }
+  .home-desc { margin-left: auto; margin-right: auto; }
+  .home-actions { justify-content: center; }
+  .home-text .socials { justify-content: center; }
+  .home-title { font-size: 32px; }
+
+  .photo-wrap { margin: 0; align-self: center; }
+  .photo-box { width: 200px; height: 200px; }
+
+  .section { padding: 130px 20px 40px; min-height: auto; }
+  .section-compact { padding: 48px 20px; }
+  .section-title { font-size: 26px; }
+  .stats { grid-template-columns: 1fr; }
+
+  .achievement-card { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .home-title { font-size: 28px; }
+  .home-role { font-size: 16px; }
+  .btn-lg { padding: 10px 20px; }
+  .photo-box { width: 170px; height: 170px; }
+  .section-compact { padding: 40px 16px; }
+}
+.photo-wrap {
+  position: relative;
+  flex-shrink: 0;
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 48px;
+  margin-right: 56px;
+}
+
+.photo-glow {
+  position: absolute;
+  inset: -16px;
+  border-radius: 24px;
+  background: rgba(242, 180, 65, 0.15);
+  filter: blur(24px);
+  pointer-events: none;
+}
+
+.photo-box {
+  position: relative;
+  width: 220px;
+  height: 250px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: inherit;
+}
+.photo-box:hover .profile-img {
+  transform: scale(1.04);
+}
+
+/* ---------- Planshet va mobil ---------- */
+
+@media (max-width: 768px) {
+  .photo-wrap {
+    margin: 0 auto;
+    align-self: center;
+  }
+
+  .photo-box {
+    width: 240px;
+    height: 270px;
+  }
+}
+
+@media (max-width: 480px) {
+  .photo-box {
+    width: 200px;
+    height: 230px;
+  }
+}
